@@ -1,32 +1,28 @@
-from rich.console import Console
-from prompt_toolkit import prompt
-from prompt_toolkit.history import FileHistory
-import requests
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
 
-console = Console()
-history = FileHistory("/opt/kaligpt/.history")
+load_dotenv()
 
-API_URL = "http://127.0.0.1:8000/ask"
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-def ask_server(question):
-    r = requests.post(
-        API_URL,
-        json={"pergunta": question},
-        timeout=60
-    )
-    data = r.json()
-    return f"""{data.get('resposta')}
-
-[TOKENS]: {data.get('tokens_usados')} | [SALDO]: {data.get('saldo_restante')}
-"""
-
-console.print("[bold green]KaliGPT Local Client[/bold green]")
+print("KaliGPT direto na OpenAI. Digite 'sair' para fechar.\n")
 
 while True:
-    user = prompt("[kali-gpt]# ", history=history)
-    if user.lower() == "exit":
+    pergunta = input("[kali-gpt]# ")
+
+    if pergunta.lower() == "sair":
         break
 
-    console.print("[cyan]Pensando...[/cyan]")
-    resposta = ask_server(user)
-    console.print(resposta)
+    try:
+        resp = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": pergunta}],
+            temperature=0.2
+        )
+
+        print("\n" + resp.choices[0].message.content + "\n")
+
+    except Exception as e:
+        print(f"\n[ERRO OPENAI]\n{e}\n")
+
