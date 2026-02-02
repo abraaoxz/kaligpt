@@ -1,137 +1,178 @@
-🐉 KaliGPT — ChatGPT direto no terminal do Kali Linux
+# ⚔️ KaliGPT — ChatGPT no Terminal do Kali Linux
 
-Projeto criado por @abraaoxz
-Um cliente CLI minimalista para usar a OpenAI direto no terminal do Kali Linux, sem servidor, sem navegador e sem complicação.
+> Cliente CLI minimalista para usar a OpenAI direto do terminal.
+> Criado por **[@abraaoxz](https://github.com/abraaoxz)** para quem vive no Kali, CTFs e pentesting.
 
-🎯 Objetivo
+---
 
-O KaliGPT permite que você use o poder do ChatGPT diretamente no terminal, focado em:
+## 🧠 O que é o KaliGPT?
 
-Pentesting
+O **KaliGPT** é um cliente de linha de comando que permite conversar com o ChatGPT **diretamente no terminal**, sem navegador, sem servidor web, sem interface gráfica.
 
-Linux
+Feito para quem:
 
-CTFs
+* Vive no terminal
+* Faz CTF
+* Trabalha com pentesting
+* Usa Kali Linux / Parrot OS diariamente
+* Quer respostas rápidas sem sair do shell
 
-Kali Linux / Parrot OS
+---
 
-Produtividade no terminal
+## 🎯 Filosofia do projeto
 
-Tudo isso rodando localmente, usando apenas sua OPENAI_API_KEY.
+> Simples. Direto. Funcional.
 
-⚙️ Requisitos
+Sem:
 
-Kali Linux / Debian-based
+* Painel web
+* Banco de dados
+* Sistema de usuários
+* Complexidade desnecessária
 
-Python 3.10+
+Apenas você + terminal + OpenAI.
 
-Conta na OpenAI com créditos ativos
+---
 
-Git
+## ⚙️ Requisitos
 
-🚀 Instalação automática (recomendado)
+* Kali Linux / Debian-based
+* Python 3.10+
+* Git
+* Conta OpenAI com créditos ativos
+
+---
+
+## 🚀 Instalação em 1 comando
+
+```bash
 git clone https://github.com/abraaoxz/kaligpt.git
 cd kaligpt
 bash install.sh
+```
 
+O instalador faz tudo:
 
-O script irá:
+* Cria venv
+* Instala dependências
+* Solicita sua `OPENAI_API_KEY`
+* Cria o comando global `kaligpt`
 
-Instalar dependências
+---
 
-Criar ambiente virtual (venv)
+## 🔑 API Key
 
-Instalar bibliotecas Python
+Durante a instalação, será solicitada sua chave.
 
-Pedir sua OPENAI_API_KEY
+Ou manualmente no arquivo:
 
-Criar o comando global kaligpt
-
-🔑 Configurar a API Key manualmente (caso precise)
-
-Edite:
-
+```
 .env
+```
 
+Formato:
 
-E coloque:
-
+```
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
+```
 
-▶️ Como usar
+---
 
-Ative o ambiente:
+## ▶️ Como usar
 
+Ative o ambiente (se necessário):
+
+```bash
 cd kaligpt
 source venv/bin/activate
-
+```
 
 Execute:
 
+```bash
 kaligpt
-
+```
 
 Ou:
 
+```bash
 python kaligpt.py
-
+```
 
 Para sair:
 
+```
 sair
+```
 
-🧠 Exemplo de uso
-[kali-gpt]# como explorar um binario em CTF
-[kali-gpt]# explique esse erro de nmap
-[kali-gpt]# melhores ferramentas para enumeração
+---
 
-📁 Estrutura do projeto
+## 💬 Exemplos reais de uso
+
+```
+[kali-gpt]# melhores técnicas de enumeração em CTF
+[kali-gpt]# explique esse erro do nmap
+[kali-gpt]# como analisar um binário ELF
+[kali-gpt]# como funciona privilege escalation no linux
+```
+
+---
+
+## 📁 Estrutura do projeto
+
+```
 kaligpt/
  ├─ kaligpt.py
  ├─ install.sh
  ├─ requirements.txt
- ├─ .env
+ ├─ .gitignore
  └─ README.md
+```
 
-❗ Erro 429 insufficient_quota
+---
+
+## ❗ Erro comum: 429 insufficient_quota
 
 Se aparecer:
 
+```
 429 insufficient_quota
+```
 
+Não é erro do projeto.
 
-Significa que sua conta OpenAI está sem créditos.
+Significa que sua conta OpenAI está sem créditos:
 
-Resolva em:
+[https://platform.openai.com/account/billing](https://platform.openai.com/account/billing)
 
-https://platform.openai.com/account/billing
+---
 
-🛡️ Segurança
+## 🔐 Segurança
 
-Sua API key nunca vai para o GitHub
+* `.env` está no `.gitignore`
+* Sua API key nunca vai para o GitHub
+* Tudo roda localmente
 
-O .env está no .gitignore
+---
 
-Tudo roda localmente na sua máquina
+## 🛠️ Personalização
 
-🧩 Filosofia do projeto
+Você pode adaptar o KaliGPT facilmente para:
 
-KaliGPT foi feito para ser:
+* Respostas focadas em pentesting
+* Automatizar tarefas
+* Integrar com scripts do seu laboratório
 
-Simples
+---
 
-Rápido
+## 👤 Autor
 
-Direto ao ponto
+Desenvolvido por **[@abraaoxz](https://github.com/abraaoxz)**
+Focado em Kali Linux, CTFs e segurança ofensiva.
 
-Útil para quem vive no terminal
+---
 
-Sem interface gráfica. Sem servidor web. Sem complexidade.
+## ⭐ Contribua
 
-👤 Autor
-
-GitHub: https://github.com/abraaoxz
-
-⭐ Contribuição
-
-Sinta-se livre para fazer fork, melhorar e adaptar ao seu fluxo de pentesting.
+Forks, melhorias e adaptações são bem-vindas.
+Sinta-se livre para moldar ao seu workflow de pentest.
